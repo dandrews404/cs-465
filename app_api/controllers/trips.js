@@ -3,9 +3,8 @@ const Model = mongoose.model('trips');
 
 const tripsUpdateTrip = async (req, res) => {
   console.log(req.body);
-  getUser(req, res, (req, res) => {
-    Model.findOneAndUpdate(
-      { code: req.params.tripCode },
+  Model
+    .findOneAndUpdate({ code: req.params.tripCode },
       {
         code: req.body.code,
         name: req.body.name,
@@ -16,8 +15,7 @@ const tripsUpdateTrip = async (req, res) => {
         image: req.body.image,
         description: req.body.description,
       },
-      { new: true }
-    )
+      { new: true })
       .then((trip) => {
         if (!trip) {
           return res.status(404).send({
@@ -36,8 +34,7 @@ const tripsUpdateTrip = async (req, res) => {
           .status(500) // server error
           .json(err);
       });
-  });
-};
+  };
 
 // GET: /trips - lists all the trips
 const tripsList = async (req, res) => {
@@ -81,7 +78,6 @@ const tripsFindByCode = async (req, res) => {
         });
 };
 const tripsAddTrip = async (req, res) => {
-    getUser(req, res, (req, res) => {
       Model.create(
         {
           code: req.body.code,
@@ -105,11 +101,11 @@ const tripsAddTrip = async (req, res) => {
           }
         }
       );
-    });
   };
 
 module.exports = {
     tripsList,
     tripsFindByCode,
-    tripsAddTrip
+    tripsAddTrip,
+    tripsUpdateTrip
 };

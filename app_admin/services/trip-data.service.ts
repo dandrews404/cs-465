@@ -13,7 +13,7 @@ export class TripDataService {
   public getTrips(): Promise<Trip[]> {
     console.log("Inside TripDataService#getTrips");
     return this.http
-      .get(`${this.apiBaseUrl}trips`)
+      .get(this.tripUrl)
       .toPromise()
       .then((response) => response.json() as Trip[])
       .catch(this.handleError);
@@ -29,22 +29,20 @@ export class TripDataService {
   }
 
   public updateTrip(formData: Trip): Promise<Trip> {
-    console.log("Inside TripDataService#updateTrip");
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("travlr-token")}`,
-    });
+    console.log('Inside TripDataService#upateTrip');
+    console.log(formData);
     return this.http
-      .put(this.tripUrl + formData.code, formData, { headers: headers })
-      .toPromise()
-      .then((response) => response.json() as Trip[])
-      .catch(this.handleError);
-  }
+    .put(this.tripUrl + formData.code, formData)
+    .toPromise()
+    .then(response => response.json() as Trip[])
+    .catch(this.handleError);
+   }
+   
 
   public addTrip(formData: Trip): Promise<Trip> {
     console.log("Inside TripDataService#addTrip");
     return this.http
-      .post('${this.apiBaseUrl}trips', formData)
+      .post(this.tripUrl, formData)
       .toPromise()
       .then((response) => response.json() as Trip[])
       .catch(this.handleError);

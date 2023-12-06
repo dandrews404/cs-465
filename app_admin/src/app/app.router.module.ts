@@ -6,8 +6,8 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
 
 const routes: Routes = [
     { path: 'add-trip', component: AddTripComponent },
-    { path: ' ', component: TripListingComponent, pathMatch: 'full'},
-    { path: 'edit-trip', component: EditTripComponent }
+    { path: 'edit-trip', component: EditTripComponent },
+    { path: '', component: TripListingComponent, pathMatch: 'full'}
 ]
 
 @NgModule({
