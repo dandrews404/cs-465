@@ -40,11 +40,8 @@ userSchema.methods.validPassword = function (password) {
     return this.hash === hash;
 };
 
-// User method to generate JWT
 userSchema.methods.generateJwt = function () {
-    // Initialize expiry date to current date
     const expiry = new Date();
-    // Set expiry date to 7 days from current date
     expiry.setDate(expiry.getDate() + 7);
 
     return jwt.sign({
@@ -52,6 +49,6 @@ userSchema.methods.generateJwt = function () {
         email: this.email,
         name: this.name,
         exp: parseInt(expiry.getTime() / 1000, 10)
-    }, process.env.JWT_SECRET); // DO NOT JWT_SECRET YOUR SECRET IN THE CODE!
+    }, process.env.JWT_SECRET);
 };
 module.exports = mongoose.model("users", userSchema);
