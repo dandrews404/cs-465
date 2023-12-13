@@ -3,7 +3,9 @@ const Model = mongoose.model('trips');
 const user = mongoose.model("users");
 
 const tripsList = async (req, res) => {
-    Model.find({}).exec((err, trips) => {
+  getUser(req, res,
+    (req, res) =>
+     {Model.find({}).exec((err, trips) => {
       if (!trips) {
         return res.status(404).json({ message: "trips not found" });
       } else if (err) {
@@ -11,10 +13,13 @@ const tripsList = async (req, res) => {
       } else {
         return res.status(200).json(trips);
       }
-    });
-  };
+    });})
+};
   
   const tripsFindCode = async (req, res) => {
+    getUser(req, res,
+      (req, res) =>
+       {
     Model.find({ code: req.params.tripCode }).exec((err, trip) => {
       if (!trip) {
         return res.status(404).json({ message: "trip not found" });
@@ -23,7 +28,7 @@ const tripsList = async (req, res) => {
       } else {
         return res.status(200).json(trip);
       }
-    });
+    });})
   };
   
   const tripsUpdateTrip = async (req, res) => {

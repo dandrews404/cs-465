@@ -12,11 +12,11 @@ const auth = jwt({
 
 router 
     .route('/login')
-    .post(authController.register);
+    .post(authController.login);
 
 router 
     .route('/register')
-    .post(authController.login);
+    .post(authController.register);
 
 router
     .route('/trips')
