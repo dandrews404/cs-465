@@ -1,0 +1,1 @@
+This was by far my hardest project in College, here I created a website that is deployed using Node Packet manager and runs its database off of mongo DB. To run this project simply download all files into one folders and use the versions of NPM and mongoDB shown in my appset up file.
